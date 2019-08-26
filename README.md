@@ -47,8 +47,8 @@ python cqa_run_his_atten.py \
 	--load_small_portion=False \
 	--cache_dir=CACHE_DIR/ \
 	--bert_config_file=BERT_DIR/uncased_L-12_H-768_A-12/bert_config.json \
-	--init_checkpoint=ERT_DIR/uncased_L-12_H-768_A-12/bert_model.ckpt \
-	--vocab_file=ERT_DIR/uncased_L-12_H-768_A-12/vocab.txt \
+	--init_checkpoint=BERT_DIR/uncased_L-12_H-768_A-12/bert_model.ckpt \
+	--vocab_file=BERT_DIR/uncased_L-12_H-768_A-12/vocab.txt \
 	--quac_train_file=QUAC_DIR/train_v0.2.json \
 	--quac_predict_file=QUAC_DIR/val_v0.2.json \
 	--warmup_proportion=0.1
