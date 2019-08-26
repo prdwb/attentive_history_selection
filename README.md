@@ -4,7 +4,9 @@ This is the implementation for the "HAM" model proposed in the CIKM'19 paper [At
 
 Citation:  
 ```
-Chen Qu, Liu Yang, Minghui Qiu, Yongfeng Zhang, Cen Chen, W. Bruce Croft and Mohit Iyyer. Attentive History Selection for Conversational Question Answering. In Proceedings of the 28th ACM International Conference on Information and Knowledge Management (CIKM 2019), Beijing, China, November 03-07, 2019.
+Chen Qu, Liu Yang, Minghui Qiu, Yongfeng Zhang, Cen Chen, W. Bruce Croft and Mohit Iyyer.  
+Attentive History Selection for Conversational Question Answering.  
+In Proceedings of the 28th ACM International Conference on Information and Knowledge Management (CIKM 2019), Beijing, China, November 03-07, 2019.
 
 Bibtext
 @inproceedings{ham,
