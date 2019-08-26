@@ -4,9 +4,9 @@
 # In[1]:
 
 
-import os
-os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+# import os
+# os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+# os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # In[2]:
@@ -43,8 +43,12 @@ from scorer import external_call # quac official evaluation script
 # In[3]:
 
 
-for key in FLAGS:
-    print(key, ':', FLAGS[key].value)
+# for key in FLAGS:
+#     print(key, ':', FLAGS[key].value)
+print('Arguments:')
+for key in FLAGS.__flags.keys():
+    print('  {}: {}'.format(key, getattr(FLAGS, key)))
+print('====')
 
 tf.set_random_seed(0)
 tf.logging.set_verbosity(tf.logging.INFO)
