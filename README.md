@@ -33,9 +33,8 @@ python cqa_run_his_atten.py \
 	--learning_rate=3e-5 \
 	--n_best_size=20 \
 	--better_hae=True \
-	--MTL=True \
-	--MTL_lambda=0.1 \
-	--MTL_mu=0.8 \
+	--MTL=False \
+	--MTL_lambda=0.0
 	--mtl_input=reduce_max \
 	--train_batch_size=24 \
 	--predict_batch_size=24 \
