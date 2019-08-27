@@ -19,7 +19,7 @@ Bibtext
 
 ### Run
 
-1. Download the `BERT-base Uncased` model [here](https://github.com/google-research/bert).
+1. Download the `BERT-Base/BERT-Large Uncased` model [here](https://github.com/google-research/bert).
 2. Download the [QuAC](http://quac.ai/) data.
 3. Configurate the directories for the BERT model, data, output, and cache in `cqa_flags.py`. 
 4. Run 
