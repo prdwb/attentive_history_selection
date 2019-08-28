@@ -68,6 +68,8 @@ Program arguments can be set in `cqa_flgas.py`. Alternatively, they could be spe
 
 For other arguments, please kindly refer to `cqa_flgas.py` for help messages.
 
+We will also upload our best checkpoint very soon ...
+
 
 ### Scripts
 
