@@ -22,35 +22,36 @@ Bibtext
 1. Download the `BERT-Base/BERT-Large Uncased` model [here](https://github.com/google-research/bert).
 2. Download the [QuAC](http://quac.ai/) data.
 3. Configurate the directories for the BERT model, data, output, and cache in `cqa_flags.py`. 
-4. Run 
+4. Run
 
 ```
 python cqa_run_his_atten.py \
-	--output_dir=OUTPUT_DIR/ \
-	--max_considered_history_turns=11 \
-	--num_train_epochs=15.0 \
-	--train_steps=30000 \
+	--output_dir=output_dir/ \
+	--max_considered_history_turns=4 \
+	--num_train_epochs=20.0 \
+	--train_steps=58000 \
 	--learning_rate=3e-5 \
 	--n_best_size=20 \
 	--better_hae=True \
-	--MTL=False \
-	--MTL_lambda=0.0
-	--mtl_input=reduce_max \
-	--train_batch_size=24 \
-	--predict_batch_size=24 \
-	--evaluate_after=24000 \
+	--MTL=True \
+	--MTL_lambda=0.1 \
+	--MTL_mu=0.8 \
+	--train_batch_size=8 \
+	--predict_batch_size=8 \
+	--evaluate_after=50000 \
 	--evaluation_steps=1000 \
 	--fine_grained_attention=True \
-	--bert_hidden=768 \
-	--max_answer_length=40 \
+	--bert_hidden=1024 \
+	--max_answer_length=50 \
 	--load_small_portion=False \
-	--cache_dir=CACHE_DIR/ \
-	--bert_config_file=BERT_DIR/uncased_L-12_H-768_A-12/bert_config.json \
-	--init_checkpoint=BERT_DIR/uncased_L-12_H-768_A-12/bert_model.ckpt \
-	--vocab_file=BERT_DIR/uncased_L-12_H-768_A-12/vocab.txt \
-	--quac_train_file=QUAC_DIR/train_v0.2.json \
-	--quac_predict_file=QUAC_DIR/val_v0.2.json \
-	--warmup_proportion=0.1
+	--cache_dir=cache_large/  \
+	--bert_config_file=/bert_dir/uncased_L-24_H-1024_A-16/bert_config.json \
+	--init_checkpoint=/bert_dir/uncased_L-24_H-1024_A-16/bert_model.ckpt \
+	--vocab_file=/bert_dir/uncased_L-24_H-1024_A-16/vocab.txt \
+	--mtl_input=reduce_mean \
+	--quac_train_file=/quac_dir/train_v0.2.json  \
+	--quac_predict_file=/quac_dir/val_v0.2.json \
+	--warmup_proportion=0.1 
 ```
 Setting the max_seq_length to 512 should give better results, but it's more demanding in CUDA memory.
 
