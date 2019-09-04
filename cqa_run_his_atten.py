@@ -406,8 +406,8 @@ with tf.Session() as sess:
             # print('train step', time2-time1)
             
             
-            if (step % 3000 == 0 or                 (step >= FLAGS.evaluate_after and step % FLAGS.evaluation_steps == 0)) and                 step != 0:
-#             if step >= FLAGS.evaluate_after and step % FLAGS.evaluation_steps == 0:
+            # if (step % 3000 == 0 or                 (step >= FLAGS.evaluate_after and step % FLAGS.evaluation_steps == 0)) and                 step != 0:
+            if step >= FLAGS.evaluate_after and step % FLAGS.evaluation_steps == 0:
                     
                 val_total_loss = []
                 all_results = []
