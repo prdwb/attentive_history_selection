@@ -2,9 +2,11 @@
 
 This is the implementation for the "HAM" model proposed in the CIKM'19 paper [Attentive History Selection for Conversational Question Answering](xxx). This model first incorporates history turns with positional history answer embedding (PosHAE) with a [BERT](https://github.com/google-research/bert) based model, and then conducts soft selection of history by attending to the history turns.
 
-If you use this code for your paper, please cite it as  
+Citation:  
 ```
-Chen Qu, Liu Yang, Minghui Qiu, Yongfeng Zhang, Cen Chen, W. Bruce Croft and Mohit Iyyer. Attentive History Selection for Conversational Question Answering. In Proceedings of the 28th ACM International Conference on Information and Knowledge Management (CIKM 2019), Beijing, China, November 03-07, 2019.
+Chen Qu, Liu Yang, Minghui Qiu, Yongfeng Zhang, Cen Chen, W. Bruce Croft and Mohit Iyyer.  
+Attentive History Selection for Conversational Question Answering.  
+In Proceedings of the 28th ACM International Conference on Information and Knowledge Management (CIKM 2019), Beijing, China, November 03-07, 2019.
 
 Bibtext
 @inproceedings{ham,
@@ -17,35 +19,44 @@ Bibtext
 
 ### Run
 
-1. Download the `BERT-base Uncased` model [here](https://github.com/google-research/bert).
+1. Download the `BERT-Base/BERT-Large Uncased` model [here](https://github.com/google-research/bert).
 2. Download the [QuAC](http://quac.ai/) data.
 3. Configurate the directories for the BERT model, data, output, and cache in `cqa_flags.py`. 
-4. Run 
+4. Run
 
 ```
-python cqa_run_his_atten.py 
-    --output_dir=OUTPUT_DIR\
-    --max_considered_history_turns=11 \
-    --num_train_epochs=15.0 \
-    --train_steps=30000 \
-    --learning_rate=3e-5 \
-    --n_best_size=20 \
-    --better_hae=True \
-    --MTL=False \
-    --MTL_lambda=0.0 \
-    --train_batch_size=24 \
-    --predict_batch_size=24 \
-    --evaluate_after=24000 \
-    --evaluation_steps=1000 \
-    --disable_attention=False \
-    --aux=False \
-    --aux_shared=False \
-    --aux_lambda=0.0 \
-    --history_attention_hidden=False \
-    --fine_grained_attention=True \
-    --history_ngram=1
+python cqa_run_his_atten.py \
+	--output_dir=output_dir/ \
+	--max_considered_history_turns=4 \
+	--num_train_epochs=20.0 \
+	--train_steps=58000 \
+	--learning_rate=3e-5 \
+	--n_best_size=20 \
+	--better_hae=True \
+	--MTL=True \
+	--MTL_lambda=0.1 \
+	--MTL_mu=0.8 \
+	--train_batch_size=8 \
+	--predict_batch_size=8 \
+	--evaluate_after=50000 \
+	--evaluation_steps=1000 \
+	--fine_grained_attention=True \
+	--bert_hidden=1024 \
+	--max_answer_length=50 \
+	--load_small_portion=False \
+	--cache_dir=cache_large/  \
+	--bert_config_file=/bert_dir/uncased_L-24_H-1024_A-16/bert_config.json \
+	--init_checkpoint=/bert_dir/uncased_L-24_H-1024_A-16/bert_model.ckpt \
+	--vocab_file=/bert_dir/uncased_L-24_H-1024_A-16/vocab.txt \
+	--mtl_input=reduce_mean \
+	--quac_train_file=/quac_dir/train_v0.2.json  \
+	--quac_predict_file=/quac_dir/val_v0.2.json \
+	--warmup_proportion=0.1 
 ```
-Setting the max_seq_length to 512 should give better results.
+Setting the max_seq_length to 512 should give better results, but it's more demanding in CUDA memory.
+
+5. During training, you can monitor it via tensorboard, the log directory is the summaries under the output directory.
+6. After training, the best result is stored in the results.txt under the output directory. Also look at step_results.txt under the same directory to see at what step we get the best result.
 
 ### Some program arguments
 
@@ -57,6 +68,8 @@ Program arguments can be set in `cqa_flgas.py`. Alternatively, they could be spe
 * `max_considered_history_turns` and `max_history_turns`. We only consider `max_considered_history_turns` previous turns when preprocessing the data. This is typically set to 11, meaning that all previous turns are under consideration (for QuAC). The `max_history_turns` is for padding purpose in the history attention module.
 
 For other arguments, please kindly refer to `cqa_flgas.py` for help messages.
+
+We will also upload our best checkpoint very soon ...
 
 
 ### Scripts
