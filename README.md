@@ -69,7 +69,7 @@ Program arguments can be set in `cqa_flgas.py`. Alternatively, they could be spe
 
 For other arguments, please kindly refer to `cqa_flgas.py` for help messages.
 
-We will also upload our best checkpoint very soon ...
+This [link](https://worksheets.codalab.org/worksheets/0xb92c7222574046eea830c26cd414faec) is to our official evaluation worksheet on codalab, which contains our best model.
 
 
 ### Scripts
